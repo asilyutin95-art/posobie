@@ -1,4 +1,4 @@
-const V='pz-1792941515278';const F=["./","index.html","manifest.json","media.bin","assets/icon-180.png","assets/icon-512.png","assets/note-audio.jpg","assets/note-drift.jpg","assets/note-drums.jpg","assets/note-melody.jpg","assets/note-sample.jpg","assets/note-session.jpg","assets/note-sets.jpg"];
+const V='pz-1792961222812';const F=["./","index.html","manifest.json","media.bin","assets/icon-180.png","assets/icon-512.png","assets/note-audio.jpg","assets/note-drift.jpg","assets/note-drums.jpg","assets/note-melody.jpg","assets/note-sample.jpg","assets/note-session.jpg","assets/note-sets.jpg"];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(F)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request,{cache:'no-cache'}).then(r=>{const cl=r.clone();caches.open(V).then(c=>c.put(e.request,cl));return r}).catch(()=>caches.match(e.request,{ignoreSearch:true}).then(r=>r||caches.match('index.html'))))});
